@@ -5,10 +5,13 @@ let
       thispackage = self.callPackage ./. {};
     };
   };
+
 in pkgs.myEnvFun {
      name = haskellPackages.thispackage.name;
      buildInputs = [
        (haskellPackages.ghcWithPackages (hs: ([
-       ] ++ hs.thispackage.propagatedNativeBuildInputs)))
+         hs.cabalInstall
+         hs.text
+       ] ++ hs.thispackage.buildInputs)))
      ];
    } 

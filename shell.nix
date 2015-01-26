@@ -9,6 +9,8 @@ in pkgs.myEnvFun {
      name = haskellPackages.thispackage.name;
      buildInputs = [
        (haskellPackages.ghcWithPackages (hs: ([
+         hs.ghc 
+         hs.cabalInstall
        ] ++ hs.thispackage.propagatedNativeBuildInputs)))
      ];
    } 
